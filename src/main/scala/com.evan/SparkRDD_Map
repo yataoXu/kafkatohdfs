@@ -1,0 +1,16 @@
+package com.evan;
+
+import org.apache.spark.{SparkConf, SparkContext}
+import org.apache.spark.rdd.RDD
+
+object SparkRDD_Map{
+  def main(args: Array[String]): Unit = {
+    val conf: SparkConf = new SparkConf().setAppName("firsRDD").setMaster("local[*]")
+    val sc: SparkContext = new SparkContext(conf)
+
+    val source: RDD[Int] =sc.makeRDD(1 to 10)
+    source.foreach(println)
+    val doubleNum:RDD[Int] = source.map(_*2)
+    doubleNum.foreach(println)
+  }
+}
